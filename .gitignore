@@ -1,0 +1,5 @@
+/weights
+/BOX_MODEL/__pycache__
+/CRNN_TEXTREG/__pycache__
+/CRNN_TEXTREG/model/__pycache__
+/CRNN_TEXTREG/tool/__pycache__
