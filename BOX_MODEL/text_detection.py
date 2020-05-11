@@ -16,9 +16,9 @@ from xml.etree import ElementTree
 
 class TEXTDETECTION(object):
     # model_path = "/home/quynhnguyen/Documents/project/uet/khoa_luan/mutex_video/weights/box/weights_box.h5"
-    model_path = "/home/quynhnguyen/Documents/project/uet/khoa_luan/mutex_video/weights/box/yolo_weights.h5"
-    anchors_path = '/home/quynhnguyen/Documents/project/uet/khoa_luan/mutex_video/BOX_MODEL/yolo_anchors.txt'
-    classes_path = '/home/quynhnguyen/Documents/project/uet/khoa_luan/mutex_video/BOX_MODEL/yolo.names'
+    model_path = "/home/quynhnguyen/Documents/project/uet/khoa_luan/KLTN/weights/box/yolo_weights.h5"
+    anchors_path = '/home/quynhnguyen/Documents/project/uet/khoa_luan/KLTN/BOX_MODEL/yolo_anchors.txt'
+    classes_path = '/home/quynhnguyen/Documents/project/uet/khoa_luan/KLTN/BOX_MODEL/yolo.names'
     score = 0.5
     iou = 0.45
     model_image_size = (416, 416)
@@ -116,10 +116,10 @@ class TEXTDETECTION(object):
                         self.input_image_shape: [image.size[1], image.size[0]],
                         K.learning_phase(): 0
                     })
-        
-        print("Out boxes: ", out_boxes)
-        print("Out scores: ", out_scores)
-        print("Out classes: ", out_classes)
+
+        # print("Out boxes: ", out_boxes)
+        # print("Out scores: ", out_scores)
+        # print("Out classes: ", out_classes)
         result = []
         for index, label in enumerate(out_classes):
             print(label)
@@ -161,7 +161,7 @@ class TEXTDETECTION(object):
                 lines.append([])
                 i += 1
                 lines[i].append(box)
-        
+
         temp = []
 
         for line in lines:
@@ -172,7 +172,7 @@ class TEXTDETECTION(object):
         result = []
         for line in lines_new:
             result.extend(self.remove(line))
-        
+
         return result
     
     def remove(self, line):

@@ -11,7 +11,7 @@ import numpy as np
 from sklearn.preprocessing import normalize
 
 class TEXTREG(object):
-    def __init__(self, path_weights="/home/quynhnguyen/Documents/project/uet/khoa_luan/make_mutext_img/weights/text_reg/weights-1.pth"):
+    def __init__(self, path_weights="/home/quynhnguyen/Documents/project/uet/khoa_luan/KLTN/weights/text_reg/weights-1.pth"):
         self.model = CRNN(params.height, params.n_channel, len(params.alphabet) + 1, params.number_hidden)
         self.model.to(torch.device("cpu"))
         self.model.load_state_dict(torch.load(path_weights, map_location="cpu"))
