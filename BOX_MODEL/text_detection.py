@@ -143,13 +143,14 @@ class TEXTDETECTION(object):
         return result_img, result_box
         
     def sort_line(self, boxes):
+        print('Boxes before: ', boxes)
         if len(boxes) == 0:
             return []
         boxes = sorted(boxes, key=lambda x: x[1])
-        print(boxes)
+        print('Boxes after sort: ', boxes)
         lines = [[]]
 
-        print(boxes[0])
+        # print(boxes[0])
         y_center = (boxes[0][1] + boxes[0][3]) / 2.0
         i = 0
         for box in boxes:
@@ -172,6 +173,8 @@ class TEXTDETECTION(object):
         result = []
         for line in lines_new:
             result.extend(self.remove(line))
+            # line = sorted(line, key=lambda x: x[0])
+            # result.extend(line)
 
         return result
     

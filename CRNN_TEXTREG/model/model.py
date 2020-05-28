@@ -2,8 +2,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from CRNN_TEXTREG.model.layer import conv_bn_relu
-
 class BidirectionalLSTM(nn.Module):
     def __init__(self, in_channels, number_hidden, out_channels):
         super(BidirectionalLSTM, self).__init__()
