@@ -6,13 +6,16 @@ from mutext import MUTEX
 
 model = MUTEX()
 
+
 def jsonify_str(output_list):
     with app.app_context():
         with app.test_request_context():
             result = jsonify(output_list)
     return result
 
+
 app = Flask(__name__)
+
 
 def create_query_result(input_url, results, error=None):
     if error is not None:
@@ -22,31 +25,6 @@ def create_query_result(input_url, results, error=None):
     }
     return query_result
 
-def compute_iou(box1, box2):
-    x_min_inter = max(box1[0], box2[0])
-    y_min_inter = max(box1[1], box2[1])
-    x_max_inter = min(box1[2], box2[2])
-    y_max_inter = min(box1[3], box2[3])
-
-    inter_area = max(0, x_max_inter - x_min_inter + 1) * max(0, y_max_inter - y_min_inter + 1)
-
-    s1 = (box1[2] - box1[0] + 1) * (box1[3] - box1[1] + 1)
-    s2 = (box2[2] - box2[0] + 1) * (box2[3] - box2[1] + 1)
-
-    iou = float(inter_area / (s1 + s2 - inter_area))
-    return iou
-
-def get_iou_list_box(list1, list2):
-    iou_avg = 0
-    if list1 is not None and list2 is not None and len(list1) != len(list2):
-        return 0
-    for index, box1 in enumerate(list1):
-        box2 = list2[index]
-        iou_avg += compute_iou(box1, box2)
-    iou_avg = iou_avg / len(list1)
-    if iou_avg > 0.7:
-        return 1
-    return 0
 
 @app.route("/image")
 def queryimg():
@@ -59,6 +37,7 @@ def queryimg():
     result_text, result_box = model.get_content_image(img)
     result = {"result: ": result_text, "time": time.time() - start}
     return jsonify_str(result)
+
 
 @app.route("/video")
 def query():
@@ -86,5 +65,6 @@ def query():
 
     rs = {"result": result, "time": str(time.time() - start)}
     return jsonify_str(rs)
+
 
 app.run("localhost", 8080, threaded=False, debug=False)
