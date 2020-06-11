@@ -82,31 +82,6 @@ def query():
             list_boxes.append(result_box)
         count += 1
 
-    # lines_result = [[]]
-    # count = 0
-    # # remove duplicate line text
-    # leng = len(list_boxes) - 1
-    # for index, boxes in enumerate(list_boxes[:leng]):
-    #     if list_boxes[index] != list_boxes[leng]:
-    #         iou_avg = get_iou_list_box(boxes, list_boxes[index + 1])
-    #         print('Boxes: ', boxes)
-    #         print('List boxes: ', list_boxes[index + 1])
-    #         if iou_avg == 1:
-    #             # del list_box_final[-1]
-    #             del list_boxes[index + 1]
-    #             lines_result[count].append(result[index + 1])
-    #             # list_box_final.append(list_boxes[index + 1])
-    #         else:
-    #             count = count + 1
-    #             lines_new = [result[index + 1]]
-    #             lines_result.append(lines_new)
-    #         # list_box_final.append(list_boxes[index + 1])
-    #
-    # result_final = []
-    # for line in lines_result:
-    #     if len(line) > 2:
-    #         result_final.append(line[-2])
-
     result = list(dict.fromkeys(result))
 
     rs = {"result": result, "time": str(time.time() - start)}

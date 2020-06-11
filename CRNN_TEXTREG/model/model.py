@@ -75,7 +75,7 @@ class CRNN(nn.Module):
         output = self.rnn(conv)
 
         # add log_softmax to converge output
-        output = F.log_softmax(output, dim=2)
+        # output = F.softmax(output, dim=2)
 
         return output
 
